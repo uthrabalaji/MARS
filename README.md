@@ -7,7 +7,7 @@
 
 **Documentation:**
 
-Documentation for MARS is available at 
+Documentation for MARS is available at [MARS DOCUMENTATION](https://marsdocs.readthedocs.io/en/latest/)
 
 **Authors:**
 
