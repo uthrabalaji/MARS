@@ -19,17 +19,17 @@ Download MARS
 
 Donwload zip file of the latest release `here`_.
 
-.. _here: https://github.com/uthrabalaji/test_repo/archive/main.zip
+.. _here: https://github.com/uthrabalaji/MARS/archive/main.zip
 
 Unzip downloaded file.
 
 Alternatively, use command line to download::
 
-	git clone https://github.com/uthrabalaji/test_repo.git
+	git clone https://github.com/uthrabalaji/MARS.git
 
  
 Installation
 ------------
 To load MARS function, type the following in R console::
 
-	source("runMARS.R")
+	source("MARS.R")

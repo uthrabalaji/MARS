@@ -18,4 +18,4 @@ License
 -------
 	The code is released under GNU General Public License. For more information see `LICENSE`_.
  	
-        .. _LICENSE: https://github.com/uthrabalaji/test_repo/blob/main/LICENSE
+        .. _LICENSE: https://github.com/uthrabalaji/MARS/blob/main/LICENSE

@@ -7,11 +7,17 @@ Step1
 
 Read in demo data for ribominus/RNaseR- BSJ ; ribominus/RNaseR- gene counts ; ribinominus/RNaseR+ BSJ::   
 	
-	setwd("/test_repo/demo_data/demo3_data")
+	setwd("/MARS/demo_data/demo3_data")
+
+	#Read BSJ read counts for ribominus RNaseR-untreated samples
 
 	rminus.bsj <- read.csv("demo3_rminus_BSJ.csv",row.names = 1)
 
+        #Read BSJ read counts for ribominus RNaseR-treated samples
+
 	rplus.bsj  <- read.csv("demo3_rplus_BSJ.csv",row.names = 1)
+
+        #Read gene counts for ribominus RNaseR-untreated samples
 
 	rminus.gc  <- read.csv("demo3_rminus_GC.csv",row.names = 1)
 	
@@ -27,13 +33,13 @@ Step2
 
 Load MARS::
 
-	setwd("/test_repo")
+	setwd("/MARS")
 
-	source("runMARS.R")
+	source("MARS.R")
 
 Run MARS method::
 
-	mars.out <- runMARS(Rminus_BSJ = rminus.bsj, Rplus_BSJ = rplus.bsj, Rminus_GC = rminus.gc, design_file = designFile)
+	mars.out <- MARS(Rminus_BSJ = rminus.bsj, Rplus_BSJ = rplus.bsj, Rminus_GC = rminus.gc, design_file = designFile)
 
 
 Step3
@@ -68,5 +74,7 @@ The output file of MARS contains the follwing columns
         +--------+----------------------------------+------------------------------+
         |   7    |Ribominus/RNaseR+ pvalue          | p-value in RNaseR            |
         +--------+----------------------------------+------------------------------+
-	|   8    |meta.pvalue		            | meta analysis p-value        |
+	|   8    |avg.log2FC		            | average log2 fold change     |
+        +--------+----------------------------------+------------------------------+
+	|   9    |meta.pvalue                       | meta analysis p-value        |
         +--------+----------------------------------+------------------------------+
