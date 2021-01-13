@@ -3,7 +3,7 @@
 if("DESeq2" %in% rownames(installed.packages()) == FALSE) {install.packages("DESeq2")} 
 suppressPackageStartupMessages(library(DESeq2))
 
-runMARS <- function(Rminus_BSJ,Rminus_GC,Rplus_BSJ,design_file)
+MARS <- function(Rminus_BSJ,Rminus_GC,Rplus_BSJ,design_file)
 {
   #Ribominus/RNaseR-
   sf.gc.rminus = estimateSizeFactorsForMatrix(counts=Rminus_GC)
@@ -54,6 +54,7 @@ runMARS <- function(Rminus_BSJ,Rminus_GC,Rplus_BSJ,design_file)
   
   lfc.rminus = res.rminus.common$log2FoldChange; names(lfc.rminus) = rownames(res.rminus.common)
   lfc.rplus = res.rplus.common$log2FoldChange; names(lfc.rplus) = rownames(res.rplus.common)
+  lfc.avg = apply(data.frame(lfc.rminus,lfc.rplus),1,mean)
   
   z.rminus = qnorm(p.rminus/2,lower.tail = F)*sign(lfc.rminus)
   z.rplus = qnorm(p.rplus/2,lower.tail = F)*sign(lfc.rplus)
@@ -77,17 +78,21 @@ runMARS <- function(Rminus_BSJ,Rminus_GC,Rplus_BSJ,design_file)
   p.unique.rminus <- res.rminus$pvalue[match(unique.rminus,rownames(res.rminus))]
   names(p.unique.rminus) <- unique.rminus
   p.unique.rminus <- p.unique.rminus[!is.na(p.unique.rminus)]
+  lfc.unique.rminus <- res.rminus$log2FoldChange[match(names(p.unique.rminus),rownames(res.rminus))]
+  names(lfc.unique.rminus) <- names(p.unique.rminus)
   
   p.unique.rplus <- res.rplus$pvalue[match(unique.rplus,rownames(res.rplus))]
   names(p.unique.rplus) <- unique.rplus
   p.unique.rplus <- p.unique.rplus[!is.na(p.unique.rplus)]
+  lfc.unique.rplus <- res.rplus$log2FoldChange[match(names(p.unique.rplus),rownames(res.rplus))]
+  names(lfc.unique.rplus) <- names(p.unique.rplus)
   
   all.circ = c(names(p.meta),names(p.unique.rminus),names(p.unique.rplus))
   res.all.circ = cbind(res.rminus[all.circ,c("baseMean","log2FoldChange","pvalue")],res.rplus[all.circ,c("baseMean","log2FoldChange","pvalue")])
   rownames(res.all.circ) = all.circ
   colnames(res.all.circ) = paste(rep(c("Ribominus/RNaseR-","Ribominus/RNaseR+"),each=3),rep(c("baseMean","log2FoldChange","pvalue"),2))
   
-  meta.out <- data.frame(circRNA = all.circ , res.all.circ, meta.pvalue = c(p.meta,p.unique.rminus,p.unique.rplus),check.names = F)
+  meta.out <- data.frame(circRNA = all.circ , res.all.circ, avg.log2FC = c(lfc.avg,lfc.unique.rminus,lfc.unique.rplus),meta.pvalue = c(p.meta,p.unique.rminus,p.unique.rplus),check.names = F)
   
   return(meta.out)
 }
