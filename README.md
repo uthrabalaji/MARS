@@ -19,4 +19,4 @@ Documentation for MARS is available at [MARS DOCUMENTATION](https://marsdocs.rea
 
 **License:**
 
-  The code is released under GNU General Public License. For more information see [LICENSE](https://github.com/uthrabalaji/test_repo/blob/main/LICENSE)
+  The code is released under GNU General Public License. For more information see [LICENSE](https://github.com/uthrabalaji/MARS/blob/main/LICENSE)
