@@ -11,7 +11,7 @@ Documentation for MARS is available at [MARS DOCUMENTATION](https://marsdocs.rea
 
 **Authors:**
 
-  Jinghua Gu (jinghua.gu@bswhealth.org), Uthra Balaji (uthra.balaji@bswhealth.org)
+  Jinghua Gu (jinghuagu21@gmail.com), Uthra Balaji (uthra.balaji@bswhealth.org)
 
 **Release Notes:**
 
